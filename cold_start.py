@@ -2,6 +2,14 @@
 import mani_db
 from heapq import nlargest
 
+def get_top_rating(book_rate):
+    book_list = []
+    for key, value in book_rate.items():
+        avg = float(value[0]) / value[1]
+        book_list.append([key, value[0], value[1], avg])
+    first_filter = nlargest(100, book_list, key=lambda ele:ele[1])
+    return nlargest(10, first_filter, key=lambda ele:ele[3])
+
 def get_rating_by_user(user_list):
     book_rate = {}
     conn = mani_db.db_conn()
@@ -27,12 +35,7 @@ def popular_region(country, state):
     region_user = mani_db.db_select(sql, conn)
     mani_db.db_close(conn)
     book_rate = get_rating_by_user(region_user)
-    book_list = []
-    for key, value in book_rate.items():
-        avg = float(value[0]) / value[1]
-        book_list.append([key, value[0], value[1], avg])
-    first_filter = nlargest(100, book_list, key=lambda ele:ele[1])
-    return nlargest(10, first_filter, key=lambda ele:ele[3])
+    return get_top_rating(book_rate)
 
 def popular_age(age):
     book_rate = {}
@@ -52,12 +55,7 @@ def popular_age(age):
     age_user = mani_db.db_select(sql, conn)
     mani_db.db_close(conn)
     book_rate = get_rating_by_user(age_user)
-    book_list = []
-    for key, value in book_rate.items():
-        avg = float(value[0]) / value[1]
-        book_list.append([key, value[0], value[1], avg])
-    first_filter = nlargest(100, book_list, key=lambda ele:ele[1])
-    return nlargest(10, first_filter, key=lambda ele:ele[3])
+    return get_top_rating(book_rate)
 
 
 if __name__ == '__main__':
