@@ -1,4 +1,3 @@
-
 import mani_db
 def get_rating_by_ISBN(ISBN):
     conn = mani_db.db_conn()

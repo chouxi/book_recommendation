@@ -1,8 +1,8 @@
-
-import mani_db
+from models import BxBookAvg
 from heapq import nlargest
 REC_NUM = int(10)
-
+'''
+//init popular data 
 def init_popular_data():
     conn = mani_db.db_conn()
     sql = "SELECT `ISBN`,`Book-Rating` FROM `bx-book-ratings` where `book-rating` <> 0;"
@@ -20,15 +20,9 @@ def init_popular_data():
         (ISBN, value[0], value[1], avg)
         mani_db.db_insert(sql, conn)
     mani_db.db_close(conn)
-
+'''
 
 def most_popular():
-    conn = mani_db.db_conn()
-    sql = "SELECT * FROM `bx-book-avg` where `rating_num` > 20 ORDER BY `rating_avg` DESC LIMIT 100"
-    most_pop_res = mani_db.db_select(sql, conn)
-    mani_db.db_close(conn)
-    return nlargest(REC_NUM, most_pop_res, key=lambda ele:ele[1])
-
-if __name__ == '__main__':
-    #init_popular_data()
-    print most_popular()
+    #sql = "SELECT * FROM `bx-book-avg` where `rating_num` > 20 ORDER BY `rating_avg` DESC LIMIT 100"
+    most_pop_res = BxBookAvg.objects.filter(rating_num__gt=20).order_by('-rating_avg')[:100]
+    return nlargest(REC_NUM, most_pop_res, key=lambda ele:ele.rating_sum)
