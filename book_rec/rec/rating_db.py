@@ -1,10 +1,7 @@
-import mani_db
+from models import BxBookAvg
 def get_rating_by_ISBN(ISBN):
-    conn = mani_db.db_conn()
-    sql = "SELECT * FROM `bx-books-avg` WHERE `ISBN` == '%s'" %(ISBN)
-    ISBN_list = mani_db.db_select(sql, conn)
-    mani_db.db_close()
-    return ISBN_list
+    #sql = "SELECT * FROM `bx-books-avg` WHERE `ISBN` == '%s'" %(ISBN)
+    return BxBookAvg.objects.get(isbn=ISBN)
 
 def update_rating_avg(conn, ISBN, rating):
     sql = "SELECT `rating-sum`, `rating-num` FROM `bx-books-avg` WHERE `ISBN` == '%s'" %(ISBN)
