@@ -15,14 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.conf.urls import include
-from rec import views as polls_views
+from polls import views as polls_views
 from django.contrib import admin
 
 urlpatterns = [
     #url(r'^$',polls_views.index),
     #url(r'^$', polls_views.home),
     url(r'^$',polls_views.search),
-    url(r'^log/$',polls_views.result, name='index'),
+    url(r'^log/$',polls_views.image, name='index'),
     url(r'^pic/$',polls_views.pic, name='index'),
     url(r'^back/$',polls_views.back),
     #url(r'^admin/', admin.site.urls),

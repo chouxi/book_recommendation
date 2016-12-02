@@ -1,4 +1,5 @@
 from models import BxBookAvg
+from models import BxBookRatings
 from heapq import nlargest
 REC_NUM = int(10)
 '''
@@ -25,4 +26,14 @@ def init_popular_data():
 def most_popular():
     #sql = "SELECT * FROM `bx-book-avg` where `rating_num` > 20 ORDER BY `rating_avg` DESC LIMIT 100"
     most_pop_res = BxBookAvg.objects.filter(rating_num__gt=20).order_by('-rating_avg')[:100]
+    return nlargest(REC_NUM, most_pop_res, key=lambda ele:ele.rating_sum)
+
+def most_popular(sel_user_id):
+    most_pop_res = list(BxBookAvg.objects.filter(rating_num__gt=20).order_by('-rating_avg')[:100])
+    already_rated = list(BxBookRatings.objects.filter(user_id=sel_user_id))
+    for pop_res in most_pop_res:
+        for rated in already_rated:
+            if rated.isbn == pop_res.isbn:
+                already_rated.remove(rated)
+                most_pop_res.remove(pop_res)
     return nlargest(REC_NUM, most_pop_res, key=lambda ele:ele.rating_sum)

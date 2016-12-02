@@ -1,0 +1,19 @@
+ul {
+  list-style-type: none;
+}
+li {
+  overflow: hidden; 
+  white-space: nowrap;
+}
+BookName {
+    @include li;
+    font-size: medium;
+   font-weight: bold;
+}
+Rating {
+     @include li;
+   white-space: nowrap;
+}
+.top-buffer { 
+    margin-top:20px; 
+}
