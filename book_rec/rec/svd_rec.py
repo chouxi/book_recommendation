@@ -48,18 +48,3 @@ def recommend(data, user, sim_func=pears_sim, est_func=svd_est):
         estimated_score = est_func(data, user, sim_func, item, decomp_mat)
         item_scores.append((item, estimated_score))
     return nlargest(REC_NUM, item_scores, key=lambda ele:ele[1])
-
-if __name__ == '__main__':
-    result_list = orig_matrix.gene_orig_mat()
-    myMat = result_list[0]
-    user_dict = result_list[1]
-    book_dict = result_list[2]
-    if user_dict.has_key(144455):
-        result  = recommend(myMat, user_dict[144455][0])
-        if result == None:
-            print "No books to recmmond"
-        print result
-    for (key, value) in book_dict.items():
-        for val in result:
-            if value[0] == val[0]:
-                print key
