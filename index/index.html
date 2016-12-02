@@ -20,9 +20,9 @@
     <!-- 包括所有已编译的插件 -->
     <script src="js/bootstrap.min.js"></script>
 
-    <div class="container">
+    <div id="main" class="container">
 
-        <nav class="navbar navbar-default" role="navigation">
+        <nav id="navBar" class="navbar navbar-default" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -62,7 +62,7 @@
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>
-        <h3>
+        <h3 id="Section1">
             Popular Books
         </h3>
         <div class="row clearfix">
@@ -72,11 +72,9 @@
                         <img src="1.jpg" height="200" width="150">
                     </div>
                     <div class="col-md-4 column">
-
                         <ul>
-                            <BookName>
-                                梦之队
-                            </BookName>
+                            <BookName><a href="BookSearch.html" id="book_link" onclick="return clickOnBookName()">梦之队</a></BookName>     
+                                                    
                             <li>
                                 于佳
                             </li>
@@ -136,6 +134,15 @@
                     </div>
                 </div>
             </div>
+             <script>
+                 function clickOnBookName() {
+                     localStorage.setItem("bookSearching", "123");
+                     // Retrieve
+                     
+                    
+                     return true;
+                 }
+             </script>
             <div class="row clearfix">
                 <div class="row top-buffer">
                  
@@ -296,7 +303,7 @@
                 </div>
             </div>
         </div>
-        <h3>
+        <h3 id="Section2">
             People in this area also like these books
         </h3>
         <div class="row clearfix">
@@ -529,6 +536,7 @@
 
                 </div>
             </div>
-        </div>
+        </div> 
+    </div>
 </body>
 </html>

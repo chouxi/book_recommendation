@@ -17,3 +17,8 @@ Rating {
 .top-buffer { 
     margin-top:20px; 
 }
+Author {
+    @include li;
+    font-size: small;
+   font-weight: bold;
+}
