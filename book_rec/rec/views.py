@@ -27,25 +27,46 @@ def result(request):
     #key = request.GET.get('q')
     key = request.GET.get('id')
     Listp = check_user(144455)
-    ListISBN = []
-    Listpopular = []
+    Listpop = []
+    Listregion = []
+    Listage = []
     Listbook = []
-    num = 0
+    newListpop = []
+    newListregion = []
+    newListage = []
     if int(Listp[0]) == 3:
         mostp = Listp[1]
         for item in mostp:
-            ListISBN.append(item[0])
+            Listrec.append((get_book_by_ISBN(item[0]),item[2],item[3]))
+        return render(request,'index.html', {'Lista':Lista, 'message':message, 'oic':oic, 'Listpopular':Listpopular})    
+    else if int(Listp[0]) == 1:
+        Listpop = Listp[1]
+        for item in Listpop:
+            newListpop.append((get_book_by_ISBN(item[0]),item[2],item[3]))
+        Listregion = Listp[2]
+        for item in Listregion:
+            newListregion.append((get_book_by_ISBN(item[0]),item[2],item[3]))
+        Listage = Listp[3]
+        for item in Listage:
+            newListage.append((get_book_by_ISBN(item[0]),item[2],item[3]))
 
-    print ListISBN
-    for item in ListISBN:
-        Listpopular.append(get_book_by_ISBN(item))
-        #Listpopular.append((itemresult.book_title, itemresult.book_author, itemresult.isbn,itemresult.image_url_s))(itemresult.book_title, itemresult.book_author, itemresult.isbn,itemresult.image_url_s))
+    else if int(Listp[0]) == 2:
+        Listpop = Listp[1]
+        for item in Listpop:
+            newListpop.append((get_book_by_ISBN(item[0]),item[2],item[3]))
+        Listregion = Listp[2]
+        for item in Listregion:
+            newListregion.append((get_book_by_ISBN(item[0]),item[2],item[3]))
+        Listage = Listp[3]
+        for item in Listage:
+            newListage.append((get_book_by_ISBN(item[0]),item[2],item[3]))
+
+
     Lista = ["html","CSS","jQuery","python","django"]
-    print Listpopular
     #message = use.test()
     message = "http://images.amazon.com/images/P/0001046438.01.THUMBZZZ.jpg"
     oic = "qweqwehttp://images.amazon.com/images/P/0001046438.01.THUMBZZZ.jpg22222"
-    return render(request,'index.html', {'Lista':Lista, 'message':message, 'oic':oic, 'Listpopular':Listpopular, 'ListISBN':ListISBN})
+    return render(request,'index.html', {'Lista':Lista, 'message':message, 'oic':oic, 'Listpopular':Listpopular})
 def index(request):
     return HttpResponse("hello,by polls")
 def test(request):

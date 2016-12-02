@@ -27,6 +27,7 @@ def check_user(user_id):
                 return result
         else:
             result.append(2)
+            result.append(most_popular(user_obj.user_id))
             result.append(popular_age(user_obj.age))
             result.append(popular_region(user_obj.country, user_obj.state))
             return result
