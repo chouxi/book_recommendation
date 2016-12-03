@@ -6,19 +6,25 @@ li {
   white-space: nowrap;
 }
 BookName {
-    @include li;
+    @extend li;
     font-size: medium;
    font-weight: bold;
 }
 Rating {
-     @include li;
+     @extend li;
    white-space: nowrap;
+   font-size: small;
 }
 .top-buffer { 
     margin-top:20px; 
 }
 Author {
-    @include li;
+    @extend li;
     font-size: small;
-   font-weight: bold;
+    
+}
+ISBN {
+    @extend li;
+    font-size: small;
+   color: gray;
 }
