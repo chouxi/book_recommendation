@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- 引入 Bootstrap -->
     <link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/css.css">
-   
+    {% load static %}
+    <link rel="stylesheet" href="{% static ''%}css/marketing.css" />
     <!-- HTML5 Shim 和 Respond.js 用于让 IE8 支持 HTML5元素和媒体查询 -->
     <!-- 注意： 如果通过 file://  引入 Respond.js 文件，则该文件无法起效果 -->
     <!--[if lt IE 9]>
@@ -78,10 +78,10 @@
                     </div>
                     <div class="col-md-4 column">
                         <ul>
-                            <BookName><a href="loggedin.html" id="book_link" onclick="return clickOnBookName()">{{book.book_title}}</a></BookName>    <!--change name here-->
+                            <BookName>{{book.book_title}}</BookName>    <!--change name here-->
                                                     
                             <li>
-                                {{book.book_author}}
+                                <Author>{{book.book_author}}</Author>
                             </li>
                             <li>
                                 {{book.isbn}}
@@ -96,22 +96,29 @@
                             <li class="row top-buffer">
                             <li class="row top-buffer">
                             </li>
-                            <Rating>
                                 Your Rating:
-                            </Rating>
                             <li>
                                 <div class="input-group">
                                     <form action="/backtorec/" method="get"> 
                  
-                                    <input type="text" class="form-control" placeholder="1-10" name="rating" >
+                                    <input type="text" class="form-control" placeholder="1-10" name="q" id="rating" onmouseover="mOver(this)" onmouseout="mOut(this)">
                                     <input type="hidden" value = {{book.isbn}} name="bookisbn">
                                     <input type="hidden" value = {{key}} name="key" />
                                     <div class="input-group-btn">
-                                        <button class="btn btn-default" type="submit" onclick="return rate()" ><i class="glyphicon glyphicon-search"></i></button>
+                                        <button class="btn btn-default" type="submit" onclick="return rate()" ><i class="glyphicon glyphicon-pencil"></i></button>
+                                          
                                     </div>
                                     </form>
                                 </div>
 
+                                <script>
+                                    function mOver(obj) {
+
+                                    }
+                                    function mOut(obj) {
+                                        rate();
+                                    }
+                                </script>
                                 <script>
                                     function rate() {
                                         var value = Number(rating.value);
@@ -119,12 +126,15 @@
                                             // save rating here!
                                             return true;
                                         } else {
-                                            if(value>10){
+                                            if (value > 10) {
+                                                document.getElementById("rating").value = "";
                                                 alert("Rating must be lower than 10");
                                                 return false;
-                                            }else if(value <1){
+                                            } else if (value < 1) {
+                                                document.getElementById("rating").value = "";
                                                 alert("rating must be bigger than 1");
                                             } else if (Math.floor(value) != value) {
+                                                document.getElementById("rating").value = "";
                                                 alert("Enter an integer rating!");
                                                 return false;
                                             }
@@ -138,14 +148,7 @@
                     </div>
                 </div>
               
-            </div>
-             <script>
-                 function clickOnBookName() {
-                     localStorage.setItem("bookSearching", "123");
-                     // Retrieve
-                     return true;
-                 }
-             </script>
+
             
         </div>
 
