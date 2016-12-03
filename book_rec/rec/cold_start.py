@@ -33,7 +33,7 @@ def popular_region(country, state):
 
 def popular_age(age):
     book_rate = {}
-    age_int = int(age)
+    age_int = age
     if age_int < 0 or age_int > 100:
         return None
     age_ten = age_int / 10

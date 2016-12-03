@@ -5,9 +5,9 @@ import json
 import os
 import use
 from models import BxBookAvg
-from user_login import check_user 
 from models import BxBooks
 from book_db import get_book_by_ISBN
+import user_login
 
 def search(request):
 #    return render(request, 'search.html')
@@ -26,7 +26,12 @@ def home(request):
 def result(request):
     #key = request.GET.get('q')
     key = request.GET.get('id')
-    Listp = check_user(144455)
+    city = request.GET.get('city')
+    state = request.GET.get('state')
+    country = request.GET.get('country')
+    age = request.GET.get('age')
+    Listrec = []
+    Listp = user_login.check_user(123456)
     Listpop = []
     Listregion = []
     Listage = []
@@ -37,46 +42,67 @@ def result(request):
     if int(Listp[0]) == 3:
         mostp = Listp[1]
         for item in mostp:
-            Listrec.append((get_book_by_ISBN(item[0]),item[2],item[3]))
-        return render(request,'index.html', {'Lista':Lista, 'message':message, 'oic':oic, 'Listpopular':Listpopular})    
-    else if int(Listp[0]) == 1:
+            book = get_book_by_ISBN(item[0])
+            if not book == None:
+                Listrec.append((book ,item[2],round(item[3],2)))
+        return render(request,'index.html', {'Listrec':Listrec})    
+    elif int(Listp[0]) == 1:
+        #if city == None or city == None or country == None or age == None:
+            #warning here
+        user_res = user_login.new_user(key, age, city, state, country)
+        if len(user_res) < 3:
+            return
+        if not user_res[0] == None:
+            for item in user_res[0]:
+                book = get_book_by_ISBN(item.isbn)
+                if not book == None:
+                    newListpop.append((book,item[2],round(item[3],2)))
+        if not user_res[1] == None:
+            for item in user_res[1]:
+                book = get_book_by_ISBN(item[0])
+                if not book == None:
+                    newListage.append((book ,item[2],round(item[3], 2)))
+        if not user_res[2] == None:
+            for item in user_res[2]:
+                book = get_book_by_ISBN(item[0])
+                if not book == None:
+                    newListregion.append((book ,item[2],round(item[3], 2)))
+        return render(request,'index2.html', {'Listpop':newListpop,'Listregion':newListregion,'Listage':newListage})    
+    elif int(Listp[0]) == 2:
         Listpop = Listp[1]
-        for item in Listpop:
-            newListpop.append((get_book_by_ISBN(item[0]),item[2],item[3]))
-        Listregion = Listp[2]
-        for item in Listregion:
-            newListregion.append((get_book_by_ISBN(item[0]),item[2],item[3]))
-        Listage = Listp[3]
-        for item in Listage:
-            newListage.append((get_book_by_ISBN(item[0]),item[2],item[3]))
+        if not Listpop == None:
+            for item in Listpop:
+                book = get_book_by_ISBN(item.isbn)
+                if not book == None:
+                    newListpop.append((book,item.rating_num,round(item.rating_avg), 2))
+        Listage = Listp[2]
+        if not Listage == None:
+            for item in Listage:
+                book = get_book_by_ISBN(item[0])
+                if not book == None:
+                    newListage.append((book,item[2],round(item[3]), 2))
+        Listregion = Listp[3]
+        if not Listregion == None:
+            for item in Listregion:
+                book = get_book_by_ISBN(item[0])
+                if not book == None:
+                    newListregion.append((book,item[2],round(item[3]), 2))
+        return render(request,'index3.html', {'Listpop':newListpop,'Listregion':newListregion,'Listage':newListage})    
 
-    else if int(Listp[0]) == 2:
-        Listpop = Listp[1]
-        for item in Listpop:
-            newListpop.append((get_book_by_ISBN(item[0]),item[2],item[3]))
-        Listregion = Listp[2]
-        for item in Listregion:
-            newListregion.append((get_book_by_ISBN(item[0]),item[2],item[3]))
-        Listage = Listp[3]
-        for item in Listage:
-            newListage.append((get_book_by_ISBN(item[0]),item[2],item[3]))
-
-
-    Lista = ["html","CSS","jQuery","python","django"]
+    #Lista = ["html","CSS","jQuery","python","django"]
     #message = use.test()
-    message = "http://images.amazon.com/images/P/0001046438.01.THUMBZZZ.jpg"
-    oic = "qweqwehttp://images.amazon.com/images/P/0001046438.01.THUMBZZZ.jpg22222"
-    return render(request,'index.html', {'Lista':Lista, 'message':message, 'oic':oic, 'Listpopular':Listpopular})
+    #message = "http://images.amazon.com/images/P/0001046438.01.THUMBZZZ.jpg"
+    #oic = "qweqwehttp://images.amazon.com/images/P/0001046438.01.THUMBZZZ.jpg22222"
+    #return render(request,'index.html', {'Lista':Lista, 'message':message, 'oic':oic, 'Listpopular':Listpopular})
 def index(request):
     return HttpResponse("hello,by polls")
 def test(request):
         Lista = ["html","CSS","jQuery","python","django"]
         return render(request, 'result.html', {'Lista':Lista})
 def pic(request):
-    Lista = ["html","CSS","jQuery","python","django"]
-    Listb = [("1","2"),("3","4",),("5","6")]
-    picture = "http://images.amazon.com/images/P/0001046438.01.THUMBZZZ.jpg"
-    return render(request, 'main.html',{'Lista':Lista, 'picture':picture, 'Listb':Listb})
+    web = request.GET.get('isbn')
+    picture = request.GET.get('picture')
+    return render(request, 'result.html',{'web':web,'picture':picture})
 #def recommend(request):
 #   key = request.GET.get('q')
 #   judge is old or new

@@ -1,8 +1,10 @@
 from user_db import select_user
+from user_db import add_user
 from rating_db import get_rating_by_ISBN
 from svd_rec import recommend
 from orig_matrix import gene_orig_mat
 import cold_start
+import most_pop
 #1 is new user
 #2 is old user but no data
 #3 is old user can recmmend
@@ -20,16 +22,16 @@ def check_user(user_id):
         if user_dict.has_key(int(user_id)):
             rec_result  = recommend(myMat, user_dict[user_id][0])
             if rec_result == None:
-                result.append(1)
-                result.append(most_popular())
-                result.append(popular_age(user_obj.age))
-                result.append(popular_region(user_obj.country, user_obj.state))
+                result.append(2)
+                result.append(most_pop.most_popular(user_obj.user_id))
+                result.append(cold_start.popular_age(user_obj.age))
+                result.append(cold_start.popular_region(user_obj.country, user_obj.state))
                 return result
         else:
             result.append(2)
-            result.append(most_popular(user_obj.user_id))
-            result.append(popular_age(user_obj.age))
-            result.append(popular_region(user_obj.country, user_obj.state))
+            result.append(most_pop.most_popular(user_obj.user_id))
+            result.append(cold_start.popular_age(user_obj.age))
+            result.append(cold_start.popular_region(user_obj.country, user_obj.state))
             return result
         rating_list = []
         for (key, value) in book_dict.items():
@@ -39,5 +41,11 @@ def check_user(user_id):
                     rating_list.append((rating_obj.isbn, rating_obj.rating_sum, rating_obj. rating_num, rating_obj.rating_avg))
         result.append(3)
         result.append(rating_list)
-        print result[1]
         return result
+
+def new_user(user_id, age, city, state, country):
+    add_user(user_id, city, state, country, age)
+    result.append(most_pop.most_popular())
+    result.append(cold_start.popular_age(age))
+    result.append(cold_start.popular_region(state, country))
+    return result

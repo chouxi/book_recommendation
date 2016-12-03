@@ -64,237 +64,41 @@
             </div><!-- /.navbar-collapse -->
         </nav>
         <h3>
-            Popular Books
+            Recommendation Books
         </h3>
-        <div class="row clearfix">
+              <div class="row clearfix">
             <div class="row clearfix">
-                <div class="col-md-4 column">
+            {% for item in Listpop %}
+                <div class="col-md-6 column">
                     <div class="col-md-4 column">
-                        
-                        <img src = {{picture}} height="200" width="150"/>
-                    </div>
+                    <!-- <form action="/pic/" method="get"> 
+                    <input type="image" src= {{item.image_url_s}} alt="submit" height="200" width="150" />   -->
+                    <form action="/pic/" method="get"> 
+                    <!-- <img src = {{item.0.image_url_l}} height="200" width="150"/>  -->
+                    <input type="image" src= {{item.0.image_url_l}} alt="submit" height="200" width="150" />  
+                    <input type="hidden" value = {{item.0.isbn}} name="isbn"/> 
+                    <input type="hidden" value = {{item.0.image_url_l}} name="picture"/>
+
+                 </form>
+
+                </div>
                     <div class="col-md-4 column">
                         <ul>
                             <BookName>
-                            <!--    {% for i in Lista %} 
-                                <li> {{i}} </li>
-                                {% endfor %} -->
-                                {{ Lista.1 }}
-                                {{ Listb.1.0}}
+                            {{ item.0.book_title }}
                             </BookName>
                             <li>
-                                于佳
-                            </li>
-                            <li>
-                                ISBN
+                            {{ item.0.book_author }}
                             </li>
                             <Rating>
-                                Rating: 4.5/5.0
+                                Rating: 
+                                {{ item.2 }}/10
                             </Rating>
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-4 column">
-                    <div class="col-md-4 column">
-                        <img src="1.jpg" height="200" width="150">
-                    </div>
-                    <div class="col-md-4 column">
-
-                        <ul>
-                            <BookName>
-                                Dream Team
-                            </BookName>
-                            <li>
-                                Author
-                            </li>
-                            <li>
-                                ISBN
-                            </li>
-                            <Rating>
-                                Rating
-                            </Rating>
-                        </ul>
-
-                    </div>
-                </div>
-                <div class="col-md-4 column">
-                    <div class="col-md-4 column">
-                        <img src="1.jpg" height="200" width="150">
-                    </div>
-                    <div class="col-md-4 column">
-
-                        <ul>
-                            <BookName>
-                                Harry Potter
-                            </BookName>
-                            <li>
-                                Author
-                            </li>
-                            <li>
-                                ISBN
-                            </li>
-                            <Rating>
-                                Rating
-                            </Rating>
-                        </ul>
-
-                    </div>
-                </div>
-            </div>
-            <div class="row clearfix">
-                <div class="row top-buffer">
-                 
-                </div>
-                </div>
-            <div class="row clearfix">
-                <div class="col-md-4 column">
-                    <div class="col-md-4 column">
-                        <img src="1.jpg" height="200" width="150">
-                    </div>
-                    <div class="col-md-4 column">
-
-                        <ul>
-                            <BookName>
-                                梦之队
-                            </BookName>
-                            <li>
-                                于佳
-                            </li>
-                            <li>
-                                ISBN
-                            </li>
-                            <Rating>
-                                Rating: 4.5/5.0
-                            </Rating>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-4 column">
-                    <div class="col-md-4 column">
-                        <img src="1.jpg" height="200" width="150">
-                    </div>
-                    <div class="col-md-4 column">
-
-                        <ul>
-                            <BookName>
-                                Dream Team
-                            </BookName>
-                            <li>
-                                Author
-                            </li>
-                            <li>
-                                ISBN
-                            </li>
-                            <Rating>
-                                Rating
-                            </Rating>
-                        </ul>
-
-                    </div>
-                </div>
-                <div class="col-md-4 column">
-                    <div class="col-md-4 column">
-                        <img src="1.jpg" height="200" width="150">
-                    </div>
-                    <div class="col-md-4 column">
-
-                        <ul>
-                            <BookName>
-                                Harry Potter
-                            </BookName>
-                            <li>
-                                Author
-                            </li>
-                            <li>
-                                ISBN
-                            </li>
-                            <Rating>
-                                Rating
-                            </Rating>
-                        </ul>
-
-                    </div>
-                </div>
-
-
-            </div>
-            <div class="row clearfix">
-                <div class="row top-buffer">
-
-                </div>
-            </div>
-            <div class="row clearfix">
-                <div class="col-md-4 column">
-                    <div class="col-md-4 column">
-                        <img src="1.jpg" height="200" width="150">
-                    </div>
-                    <div class="col-md-4 column">
-
-                        <ul>
-                            <BookName>
-                                梦之队
-                            </BookName>
-                            <li>
-                                于佳
-                            </li>
-                            <li>
-                                ISBN
-                            </li>
-                            <Rating>
-                                Rating: 4.5/5.0
-                            </Rating>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-4 column">
-                    <div class="col-md-4 column">
-                        <img src="1.jpg" height="200" width="150">
-                    </div>
-                    <div class="col-md-4 column">
-
-                        <ul>
-                            <BookName>
-                                Dream Team
-                            </BookName>
-                            <li>
-                                Author
-                            </li>
-                            <li>
-                                ISBN
-                            </li>
-                            <Rating>
-                                Rating
-                            </Rating>
-                        </ul>
-
-                    </div>
-                </div>
-                <div class="col-md-4 column">
-                    <div class="col-md-4 column">
-                        <img src="1.jpg" height="200" width="150">
-                    </div>
-                    <div class="col-md-4 column">
-
-                        <ul>
-                            <BookName>
-                                Harry Potter
-                            </BookName>
-                            <li>
-                                Author
-                            </li>
-                            <li>
-                                ISBN
-                            </li>
-                            <Rating>
-                                Rating
-                            </Rating>
-                        </ul>
-
-                    </div>
-                </div>
-
-
-            </div>
+            {% endfor %}
+        </div> 
             <div class="row clearfix">
                 <div class="row top-buffer">
 
@@ -302,233 +106,77 @@
             </div>
         </div>
         <h3>
-            People in this area also like these books
+            the hottest books of this age range
         </h3>
         <div class="row clearfix">
             <div class="row clearfix">
+            {% for item in Listage %}
                 <div class="col-md-4 column">
                     <div class="col-md-4 column">
-                        <img src="1.jpg" height="200" width="150">
+                        <form action="/pic/" method="get"> 
+                    <!-- <img src = {{item.0.image_url_l}} height="200" width="150"/>  -->
+                    <input type="image" src= {{item.0.image_url_l}} alt="submit" height="200" width="150" />  
+                    <input type="hidden" value = {{item.0.isbn}} name="isbn"/> 
+                    <input type="hidden" value = {{item.0.image_url_l}} name="picture"/>
+
+                 </form>
                     </div>
                     <div class="col-md-4 column">
 
                         <ul>
                             <BookName>
-                                梦之队
+                            {{ item.0.book_title }}
                             </BookName>
                             <li>
-                                于佳
-                            </li>
-                            <li>
-                                ISBN
+                            {{ item.0.book_author }}
                             </li>
                             <Rating>
-                                Rating: 4.5/5.0
+                                Rating: {{ item.2 }}/10
                             </Rating>
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-4 column">
-                    <div class="col-md-4 column">
-                        <img src="1.jpg" height="200" width="150">
-                    </div>
-                    <div class="col-md-4 column">
-
-                        <ul>
-                            <BookName>
-                                Dream Team
-                            </BookName>
-                            <li>
-                                Author
-                            </li>
-                            <li>
-                                ISBN
-                            </li>
-                            <Rating>
-                                Rating
-                            </Rating>
-                        </ul>
-
-                    </div>
-                </div>
-                <div class="col-md-4 column">
-                    <div class="col-md-4 column">
-                        <img src="1.jpg" height="200" width="150">
-                    </div>
-                    <div class="col-md-4 column">
-
-                        <ul>
-                            <BookName>
-                                Harry Potter
-                            </BookName>
-                            <li>
-                                Author
-                            </li>
-                            <li>
-                                ISBN
-                            </li>
-                            <Rating>
-                                Rating
-                            </Rating>
-                        </ul>
-
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
+        </div>   
             <div class="row clearfix">
                 <div class="row top-buffer">
 
                 </div>
             </div>
+        </div>
+        <h3>
+            The hottest books in the region
+        </h3>
+        <div class="row clearfix">
             <div class="row clearfix">
-                <div class="col-md-4 column">
+            {% for item in Listregion %}
+                <div class="col-md-6 column">
                     <div class="col-md-4 column">
-                        <img src="1.jpg" height="200" width="150">
+                        <form action="/pic/" method="get"> 
+                    <!-- <img src = {{item.0.image_url_l}} height="200" width="150"/>  -->
+                    <input type="image" src= {{item.0.image_url_l}} alt="submit" height="200" width="150" />  
+                    <input type="hidden" value = {{item.0.isbn}} name="isbn"/> 
+                    <input type="hidden" value = {{item.0.image_url_l}} name="picture"/>
+
+                 </form>
                     </div>
-                    <div class="col-md-4 column">
+                    <div class="col-md-6 column">
 
                         <ul>
                             <BookName>
-                                梦之队
+                            {{ item.0.book_title }}
                             </BookName>
                             <li>
-                                于佳
-                            </li>
-                            <li>
-                                ISBN
+                            {{ item.0.book_author }}
                             </li>
                             <Rating>
-                                Rating: 4.5/5.0
+                                Rating: {{ item.2 }}/10
                             </Rating>
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-4 column">
-                    <div class="col-md-4 column">
-                        <img src="1.jpg" height="200" width="150">
-                    </div>
-                    <div class="col-md-4 column">
-
-                        <ul>
-                            <BookName>
-                                Dream Team
-                            </BookName>
-                            <li>
-                                Author
-                            </li>
-                            <li>
-                                ISBN
-                            </li>
-                            <Rating>
-                                Rating
-                            </Rating>
-                        </ul>
-
-                    </div>
-                </div>
-                <div class="col-md-4 column">
-                    <div class="col-md-4 column">
-                        <img src="1.jpg" height="200" width="150">
-                    </div>
-                    <div class="col-md-4 column">
-
-                        <ul>
-                            <BookName>
-                                Harry Potter
-                            </BookName>
-                            <li>
-                                Author
-                            </li>
-                            <li>
-                                ISBN
-                            </li>
-                            <Rating>
-                                Rating
-                            </Rating>
-                        </ul>
-
-                    </div>
-                </div>
-
-
-            </div>
-            <div class="row clearfix">
-                <div class="row top-buffer">
-
-                </div>
-            </div>
-            <div class="row clearfix">
-                <div class="col-md-4 column">
-                    <div class="col-md-4 column">
-                        <img src="1.jpg" height="200" width="150">
-                    </div>
-                    <div class="col-md-4 column">
-
-                        <ul>
-                            <BookName>
-                                梦之队
-                            </BookName>
-                            <li>
-                                于佳
-                            </li>
-                            <li>
-                                ISBN
-                            </li>
-                            <Rating>
-                                Rating: 4.5/5.0
-                            </Rating>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-4 column">
-                    <div class="col-md-4 column">
-                        <img src="1.jpg" height="200" width="150">
-                    </div>
-                    <div class="col-md-4 column">
-
-                        <ul>
-                            <BookName>
-                                Dream Team
-                            </BookName>
-                            <li>
-                                Author
-                            </li>
-                            <li>
-                                ISBN
-                            </li>
-                            <Rating>
-                                Rating
-                            </Rating>
-                        </ul>
-
-                    </div>
-                </div>
-                <div class="col-md-4 column">
-                    <div class="col-md-4 column">
-                        <img src="1.jpg" height="200" width="150">
-                    </div>
-                    <div class="col-md-4 column">
-
-                        <ul>
-                            <BookName>
-                                Harry Potter
-                            </BookName>
-                            <li>
-                                Author
-                            </li>
-                            <li>
-                                ISBN
-                            </li>
-                            <Rating>
-                                Rating
-                            </Rating>
-                        </ul>
-
-                    </div>
-                </div>
-
-
-            </div>
+            {% endfor %}
+        </div>   
             <div class="row clearfix">
                 <div class="row top-buffer">
 
