@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- 引入 Bootstrap -->
     <link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="css/css.css">
+   
     <!-- HTML5 Shim 和 Respond.js 用于让 IE8 支持 HTML5元素和媒体查询 -->
     <!-- 注意： 如果通过 file://  引入 Respond.js 文件，则该文件无法起效果 -->
     <!--[if lt IE 9]>
@@ -19,9 +20,9 @@
     <!-- 包括所有已编译的插件 -->
     <script src="js/bootstrap.min.js"></script>
 
-    <div class="container">
+    <div id="main" class="container">
 
-        <nav class="navbar navbar-default" role="navigation">
+        <nav id="navBar" class="navbar navbar-default" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -47,9 +48,13 @@
                     </div>
                 </form>
 
-                <ul  class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav navbar-right">
                     <li class="navbar-form" role="log">
-                        <div id="log" class="input-group">
+                        <!-- change to print userID here -->
+                        <!--<div class="input-group">
+                            userID
+                        </div>-->
+                        <div class="input-group">
                             <input type="text" class="form-control" placeholder="User Name" name="id">
                             <div class="input-group-btn">
                                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-user"></i></button>
@@ -59,46 +64,57 @@
                     </li>
                 
                 </ul>
-            <script>
-                var element = document.getElementById("log");
-                element.innerHTML = "User ID";
-            </script>
             </div><!-- /.navbar-collapse -->
         </nav>
 
+        <!-- *********************************************************************************************************************** -->
+        <h2>
+            Search Result
+        </h2>
+
         <div class="row clearfix">
-            <div class="col-md-4 column">
-                <div class="row clearfix">
+
+            <div class="row clearfix">
+                {% block content %}
+                {% for item in SearchResult %}
+                <div class="col-md-6 column">
                     <div class="col-md-4 column">
-                        <img src="1.jpg" height="120" width="80">
+                        <img src={{item.image_url_l}} height="200" width="150">  <!--change picture here-->
                     </div>
                     <div class="col-md-4 column">
-                        <img src="1.jpg" height="120" width="80">
-                    </div>
-                    <div class="col-md-4 column">
-                        <img src="1.jpg" height="120" width="80">
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 column">
-                <div class="row clearfix">
-                    <div class="col-md-4 column">
-                        <img src="1.jpg" height="120" width="80">
-                        <!--<p>
-                            <a class="btn" href="#">View details »</a>
-                        </p>-->
-                    </div>
-                    <div class="col-md-4 column">
-                        <img src="1.jpg" height="120" width="80">
-                    </div>
-                    <div class="col-md-4 column">
-                        <img src="1.jpg" height="120" width="80" >
-                      
+                        <ul>
+                            <BookName><a href="book.html" id="book_link" onclick="return clickOnBookName()">{{ item.book_title }}</a></BookName>    <!--change name here-->
+                                                    
+                            <li>
+                                {{ item.book_author }}
+                            </li>
+                            <li>
+                                ISBN
+                            </li>
+                            <Rating>
+                                Rating: 4.5/5.0   <!--change rating here-->
+                            </Rating>
+                        </ul>
                     </div>
                 </div>
-            </div>
-           
+                <div class="row clearfix">
+                    <div class="row top-buffer">
+
+                    </div>
+                </div>
+                <div class="row clearfix">
+                </div>
+                {% endfor %}
+                {% endblock content %}
+             <script>
+                 function clickOnBookName() {
+                     localStorage.setItem("bookSearching", "123");
+                     // Retrieve
+                     return true;
+                 }
+             </script>
         </div>
+
     </div>
 </body>
 </html>
