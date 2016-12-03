@@ -16,8 +16,8 @@ def search(request):
     return render(request, 'main.html')
 def searchbook(request):
     like_str = request.GET.get('put')
-    #key = request.GET.get('id')
-    key = 123456
+    key = request.GET.get('id')
+    #key = 123456
     research_res = get_book_list_like(like_str)
     if research_res == None:
         return
@@ -35,8 +35,8 @@ def home(request):
     return render(request, 'home.html',{'string':string})
     #return render(request, 'home.html')
 def result(request):
-    #key = request.GET.get('id')
-    key = 123456
+    key = request.GET.get('id')
+    #key = 123456
     city = request.GET.get('city')
     state = request.GET.get('state')
     country = request.GET.get('country')
@@ -67,7 +67,7 @@ def result(request):
             for item in user_res[0]:
                 book = get_book_by_ISBN(item.isbn)
                 if not book == None:
-                    newListpop.append((book,item[2],round(item[3],2)))
+                    newListpop.append((book,item.rating_sum,round(item.rating_avg,2)))
         if not user_res[1] == None:
             for item in user_res[1]:
                 book = get_book_by_ISBN(item[0])
@@ -118,9 +118,9 @@ def backtorec(request):
     isbntmp = request.GET.get('bookisbn')
     ratetmp = request.GET.get('rating')
     print isbntmp, ratetmp, key
-    #mani_rating(key, isbntmp, ratetmp)
+    mani_rating(key, isbntmp, ratetmp)
     Listrec = []
-    Listp = user_login.check_user(123456)
+    Listp = user_login.check_user(int(key))
     Listpop = []
     Listregion = []
     Listage = []

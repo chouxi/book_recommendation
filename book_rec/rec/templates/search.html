@@ -6,7 +6,7 @@
     <!-- 引入 Bootstrap -->
     <link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     {% load static %}
-    <link rel="stylesheet" href="{% static ''%}css/marketing.css" />
+    <link rel="stylesheet" href="{% static ''%}css/css.css" />
    
     <!-- HTML5 Shim 和 Respond.js 用于让 IE8 支持 HTML5元素和媒体查询 -->
     <!-- 注意： 如果通过 file://  引入 Respond.js 文件，则该文件无法起效果 -->
@@ -76,7 +76,7 @@
         <div class="row clearfix">
 
             <div class="row clearfix">
-            {% for item in Listsearch %}
+            {% for item in researchList %}
                 <div class="col-md-6 column">
                     <div class="col-md-4 column">
                
@@ -85,6 +85,7 @@
                     <input type="image" src= {{item.0.image_url_l}} alt="submit" height="200" width="150" />  
                     <input type="hidden" value = {{item.0.isbn}} name="isbn"/> 
                     <input type="hidden" value = {{item.0.image_url_l}} name="picture"/>
+                    <input type="hidden" value={{key}} name="key">
 
                  </form>
                 </div>
@@ -98,7 +99,7 @@
                             </li>
                             <Rating>
                                 Rating: 
-                                {{ item.2 }}/10
+                                {{ item.3 }}/10
                             </Rating>
                         </ul>
                     </div>

@@ -45,7 +45,8 @@ def check_user(user_id):
 
 def new_user(user_id, age, city, state, country):
     add_user(user_id, city, state, country, age)
-    result.append(most_pop.most_popular())
-    result.append(cold_start.popular_age(age))
-    result.append(cold_start.popular_region(state, country))
+    result = []
+    result.append(most_pop.most_popular(user_id))
+    result.append(cold_start.popular_age(user_id, age))
+    result.append(cold_start.popular_region(user_id, state, country))
     return result
