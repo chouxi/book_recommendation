@@ -4,7 +4,7 @@
     <title>Douban 豆瓣</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- 引入 Bootstrap -->
-    <link href="http://cdn.static.runoob.com/libs/bootstrap/3.3. 7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/css.css">
    
     <!-- HTML5 Shim 和 Respond.js 用于让 IE8 支持 HTML5元素和媒体查询 -->
@@ -68,42 +68,77 @@
         </nav>
 
         <!-- *********************************************************************************************************************** -->
-        <h2>
-            Search Result
-        </h2>
+
 
         <div class="row clearfix">
-
             <div class="row clearfix">
-            {% for item in Listsearch %}
                 <div class="col-md-6 column">
                     <div class="col-md-4 column">
-               
-                 <form action="/pic/" method="get"> 
-                    <!-- <img src = {{item.0.image_url_l}} height="200" width="150"/>  -->
-                    <input type="image" src= {{item.0.image_url_l}} alt="submit" height="200" width="150" />  
-                    <input type="hidden" value = {{item.0.isbn}} name="isbn"/> 
-                    <input type="hidden" value = {{item.0.image_url_l}} name="picture"/>
-
-                 </form>
-                </div>
+                        <img src={{book.image_url_l}} height="200" width="150">  <!--change picture here-->
+                    </div>
                     <div class="col-md-4 column">
                         <ul>
-                            <BookName>
-                            {{ item.0.book_title }}
-                            </BookName>
+                            <BookName><a href="loggedin.html" id="book_link" onclick="return clickOnBookName()">{{book.book_title}}</a></BookName>    <!--change name here-->
+                                                    
                             <li>
-                            {{ item.0.book_author }}
+                                {{book.book_author}}
+                            </li>
+                            <li>
+                                {{book.isbn}}
                             </li>
                             <Rating>
-                                Rating: 
-                                {{ item.2 }}/10
+                                Rating: {{ ratingavg }}/10.0 
+                                {{ rating.rating_num }} rated <!--change rating here-->
                             </Rating>
+                            <li class="row top-buffer">
+
+                            </li>
+                            <li class="row top-buffer">
+                            <li class="row top-buffer">
+                            </li>
+                            <Rating>
+                                Your Rating:
+                            </Rating>
+                            <li>
+                                <div class="input-group">
+                                    <form action="/backtorec/" method="get"> 
+                 
+                                    <input type="text" class="form-control" placeholder="1-10" name="rating" >
+                                    <input type="hidden" value = {{book.isbn}} name="bookisbn">
+                                    <input type="hidden" value = {{key}} name="key" />
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-default" type="submit" onclick="return rate()" ><i class="glyphicon glyphicon-search"></i></button>
+                                    </div>
+                                    </form>
+                                </div>
+
+                                <script>
+                                    function rate() {
+                                        var value = Number(rating.value);
+                                        if (Math.floor(value) == value && value <11 && value >0) {
+                                            // save rating here!
+                                            return true;
+                                        } else {
+                                            if(value>10){
+                                                alert("Rating must be lower than 10");
+                                                return false;
+                                            }else if(value <1){
+                                                alert("rating must be bigger than 1");
+                                            } else if (Math.floor(value) != value) {
+                                                alert("Enter an integer rating!");
+                                                return false;
+                                            }
+                                        }
+                                    }
+
+                                </script>
+                            </li>
+
                         </ul>
                     </div>
                 </div>
-                
-            {% endfor %}
+              
+            </div>
              <script>
                  function clickOnBookName() {
                      localStorage.setItem("bookSearching", "123");
@@ -111,6 +146,7 @@
                      return true;
                  }
              </script>
+            
         </div>
 
     </div>

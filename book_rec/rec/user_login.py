@@ -24,14 +24,14 @@ def check_user(user_id):
             if rec_result == None:
                 result.append(2)
                 result.append(most_pop.most_popular(user_obj.user_id))
-                result.append(cold_start.popular_age(user_obj.age))
-                result.append(cold_start.popular_region(user_obj.country, user_obj.state))
+                result.append(cold_start.popular_age(user_id, user_obj.age))
+                result.append(cold_start.popular_region(user_id, user_obj.country, user_obj.state))
                 return result
         else:
             result.append(2)
             result.append(most_pop.most_popular(user_obj.user_id))
-            result.append(cold_start.popular_age(user_obj.age))
-            result.append(cold_start.popular_region(user_obj.country, user_obj.state))
+            result.append(cold_start.popular_age(user_id, user_obj.age))
+            result.append(cold_start.popular_region(user_id, user_obj.country, user_obj.state))
             return result
         rating_list = []
         for (key, value) in book_dict.items():

@@ -29,7 +29,7 @@ def most_popular():
     return nlargest(REC_NUM, most_pop_res, key=lambda ele:ele.rating_sum)
 
 def most_popular(sel_user_id):
-    most_pop_res = list(BxBookAvg.objects.filter(rating_num__gt=20).order_by('-rating_avg')[:100])
+    most_pop_res = list(BxBookAvg.objects.filter(rating_num__gt=20).order_by('-rating_avg'))[:100]
     already_rated = list(BxBookRatings.objects.filter(user_id=sel_user_id))
     for pop_res in most_pop_res:
         for rated in already_rated:

@@ -17,3 +17,13 @@ Rating {
 .top-buffer { 
     margin-top:20px; 
 }
+Author {
+      @include li span;
+   white-space: nowrap;
+   color : red;
+}
+li span {
+    overflow: hidden; 
+  white-space: nowrap;
+  color : red;
+}

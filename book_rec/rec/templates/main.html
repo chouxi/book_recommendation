@@ -21,8 +21,9 @@
             <link rel="stylesheet" href="css/layouts/marketing-old-ie.css">
         <![endif]-->
         <!--[if gt IE 8]><!-->
-            <link rel="stylesheet" href="css/layouts/marketing.css">
-        <!--<![endif]-->
+        {% load static %}
+            <link rel="stylesheet" href="{% static ''%}css/marketing.css"/>
+                <!--<![endif]-->
 </head>
 <body>
 
