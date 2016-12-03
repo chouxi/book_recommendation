@@ -26,7 +26,7 @@ urlpatterns = [
     url(r'^pic/$',polls_views.pic, name='index'),
     url(r'^back/$',polls_views.back),
     url(r'^backtorec/$',polls_views.back),
-    url(r'^search/$',polls_views.searchbook)
+    url(r'^search/$',polls_views.searchbook),
     #url(r'^admin/', admin.site.urls),
     #url(r'^polls/', include('polls.urls')),
 ]

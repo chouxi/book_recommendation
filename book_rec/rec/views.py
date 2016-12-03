@@ -10,16 +10,19 @@ from book_db import get_book_by_ISBN
 import user_login
 from rating_db import get_rating_by_ISBN
 from rating_db import add_rating
-
+from book_db import get_book_list_like
 def search(request):
 #    return render(request, 'search.html')
     return render(request, 'main.html')
 def searchbook(request):
-    bookisbn = request.GET.get('put')
+    like_str = request.GET.get('put')
     #key = request.GET.get('id')
     key = 123456
-    book = get_book_by_ISBN(key)
-    return render(request,'search.html',{'book':book,'key':key})
+    research_res = get_book_list_like(like_str)
+    if research_res == None:
+        return
+    return render(request,'search.html',{'researchList':research_res,'key':key})
+
 def back(request):
     return render(request, 'index.html')
 def image(request):
