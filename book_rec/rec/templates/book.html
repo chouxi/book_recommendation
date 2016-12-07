@@ -18,7 +18,7 @@
     <!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
     <script src="https://code.jquery.com/jquery.js"></script>
     <!-- 包括所有已编译的插件 -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="{% static ''%}js/bootstrap.min.js"></script>
 
     <div id="main" class="container">
 
@@ -76,7 +76,7 @@
                     <div class="col-md-4 column">
                         <img src={{book.image_url_l}} height="200" width="150">  <!--change picture here-->
                     </div>
-                    <div class="col-md-4 column">
+                    <div class="col-md-5 column">
                         <ul>
                             <BookName>{{book.book_title}}</BookName>    <!--change name here-->
                                                     
@@ -96,20 +96,25 @@
                             
                             <li class="row top-buffer">
                             </li>
-                                Your Rating:
+                                   Your Rating:
                             <li>
-                                <div class="input-group">
                                     <form action="/backtorec/" method="get"> 
-                 
-                                    <input type="text" class="form-control" placeholder="1-10" name="rating" id="rating" onmouseover="mOver(this)" onmouseout="mOut(this)">
-                                    <input type="hidden" value = {{book.isbn}} name="bookisbn">
-                                    <input type="hidden" value = {{key}} name="key" />
-                                    <div class="input-group-btn">
+                                        <fieldset class="rating">                            
+                                            <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Rocks!">5 stars</label>
+                                            <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Pretty good">4 stars</label>
+                                            <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Meh">3 stars</label>
+                                            <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Kinda bad">2 stars</label>
+                                            <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Sucks big time">1 star</label>
+                                        </fieldset>
+                                    <!--<input type="text" class="form-control" placeholder="1-10" name="rating" id="rating" onmouseover="mOver(this)" onmouseout="mOut(this)">-->
+                                            <input type="hidden" value = {{book.isbn}} name="bookisbn">
+                                            <input type="hidden" value = {{key}} name="key" />
+                                    <!--<div class="input-group-btn">
                                         <button class="btn btn-default" type="submit" onclick="return rate()" ><i class="glyphicon glyphicon-pencil"></i></button>
                                           
-                                    </div>
+                                    </div>-->
                                     </form>
-                                </div>
+                                
 
                                 <script>
                                     function mOver(obj) {
@@ -148,8 +153,7 @@
                     </div>
                 </div>
               
-
-            
+               
         </div>
 
     </div>
