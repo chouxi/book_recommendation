@@ -21,7 +21,7 @@ def get_book_list_like(like_str):
         book_rating = get_rating_by_ISBN(res.isbn)
         if book_rating == None:
             continue
-        book_dict.append((res, book_rating.rating_sum, book_rating.rating_num, round(book_rating.rating_avg,2)))
+        book_dict.append((res, book_rating.rating_sum, book_rating.rating_num, book_rating.rating_avg))
     if len(book_dict) <= 10:
         return book_dict
     sum_fil_book = nlargest(100, book_dict, key=lambda ele:ele[3])
