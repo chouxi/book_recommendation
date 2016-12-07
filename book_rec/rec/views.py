@@ -85,19 +85,19 @@ def result(request):
             for item in Listpop:
                 book = get_book_by_ISBN(item.isbn)
                 if not book == None:
-                    newListpop.append((book,item.rating_num,round(item.rating_avg), 2))
+                    newListpop.append((book,item.rating_num,round(item.rating_avg, 2)))
         Listage = Listp[2]
         if not Listage == None:
             for item in Listage:
                 book = get_book_by_ISBN(item[0])
                 if not book == None:
-                    newListage.append((book,item[2],round(item[3]), 2))
+                    newListage.append((book,item[2],round(item[3], 2)))
         Listregion = Listp[3]
         if not Listregion == None:
             for item in Listregion:
                 book = get_book_by_ISBN(item[0])
                 if not book == None:
-                    newListregion.append((book,item[2],round(item[3]), 2))
+                    newListregion.append((book,item[2],round(item[3], 2)))
         return render(request,'index3.html', {'Listpop':newListpop,'Listregion':newListregion,'Listage':newListage,'key':key})    
 
     #Lista = ["html","CSS","jQuery","python","django"]
@@ -141,19 +141,19 @@ def backtorec(request):
             for item in Listpop:
                 book = get_book_by_ISBN(item.isbn)
                 if not book == None:
-                    newListpop.append((book,item.rating_num,round(item.rating_avg), 2))
+                    newListpop.append((book,item.rating_num,round(item.rating_avg, 2)))
         Listage = Listp[2]
         if not Listage == None:
             for item in Listage:
                 book = get_book_by_ISBN(item[0])
                 if not book == None:
-                    newListage.append((book,item[2],round(item[3]), 2))
+                    newListage.append((book,item[2],round(item[3], 2)))
         Listregion = Listp[3]
         if not Listregion == None:
             for item in Listregion:
                 book = get_book_by_ISBN(item[0])
                 if not book == None:
-                    newListregion.append((book,item[2],round(item[3]), 2))
+                    newListregion.append((book,item[2],round(item[3], 2)))
         return render(request,'index3.html', {'Listpop':newListpop,'Listregion':newListregion,'Listage':newListage,'key':key})    
 
 def mani_rating(user_id, isbn, rating):
