@@ -65,9 +65,10 @@ def popular_age(age):
     return get_top_rating(book_rate)
 '''
 def popular_age(sel_user_id,age):
-    print age
+    if age == "NULL":
+        return
     book_rate = {}
-    age_int = age
+    age_int = int(age)
     if age_int < 0 or age_int > 100:
         return None
     age_ten = age_int / 10
@@ -80,7 +81,6 @@ def popular_age(sel_user_id,age):
     #sql = "SELECT `User-id` FROM `bx-users` where `age` >= '%s' and `age` < '%s'" \
     #% (str(age_int), str((age_int + 5)))
     age_user = BxUsers.objects.filter(age__range=["%s"%(age_int), "%s"%((age_int + 4))])
-    print age_user
     book_rate = get_rating_by_user(age_user)
     already_rated = list(BxBookRatings.objects.filter(user_id=sel_user_id))
     for (key, value) in book_rate.items():
