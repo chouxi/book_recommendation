@@ -37,7 +37,7 @@
 
 <div class="header">
     <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
-        <a class="pure-menu-heading" href="">Book Recommendation</a>
+        <a class="pure-menu-heading" href="">Book Recommendation System</a>
 
         <!--<ul class="pure-menu-list">
             <li class="pure-menu-item pure-menu-selected"><a href="#" class="pure-menu-link">Home</a></li>
@@ -58,47 +58,45 @@
             <a href="http://purecss.io" class="pure-button pure-button-primary">Get Started</a>
         </p>-->
         <form action="/log/" method="get"> 
-        <input class="pure-input-1" type="text" placeholder="Enter the user name" name="id" />
-        <input class="pure-input-1" type="text" placeholder="Enter the city name" name="city" />
-        <input class="pure-input-1" type="text" placeholder="Enter the state name" name="state" />
-        <input class="pure-input-1" type="text" placeholder="Enter the country name" name="country" />
-        <input class="pure-input-1" type="text" placeholder="Enter the age name" name="age" />
-
         
-            <style scoped>
-                .button-success,
-                .button-error,
-                .button-warning,
-                .button-secondary {
-                    color: white;
-                    border-radius: 4px;
-                    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-                }
+            <div class="row clearfix">
+                <div class="col-md-6 column">
+                    <input class="pure-input-1" type="text" placeholder="User name" name="id" />
+                    </div>
+                    <div class="col-md-6 column">
+                        <input class="pure-input-1" type="text" placeholder="City" name="city" />
+                        </div>
+                <div class="col-md-6 column">
+                    <input class="pure-input-1" type="text" placeholder="State" name="state" />
+                    </div>
+                <div class="col-md-6 column">
+                    <input class="pure-input-1" type="text" placeholder="Country" name="country" />
+                    </div>
+                <div class="col-md-6 column">
+                    <input class="pure-input-1" type="text" placeholder="Age" name="age" />
+                    </div>
+                </div>
 
-                .button-success {
-                    background: rgb(28, 184, 65); /* this is a green */
-                }
+                <style scoped>
+                    .button-success {
+                        color: white;
+                        border-radius: 2px;
+                        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+                    }
 
-                .button-error {
-                    background: rgb(202, 60, 60); /* this is a maroon */
-                }
+                    .button-success {
+                        background: rgb(28, 184, 65); /* this is a green */
+                    }
+                </style>
+            <div class="row clearfix">
+                <div class="row top-buffer">
 
-                .button-warning {
-                    background: rgb(223, 117, 20); /* this is an orange */
-                }
-
-                .button-secondary {
-                    background: rgb(66, 184, 221); /* this is a light blue */
-                }
-            </style>
-            <div class="row top-buffer">
-
+                </div>
             </div>
-            <div class="row top-buffer">
 
-            </div>
-                <button class="button-success pure-button">search</button>
-</form>
+                <button class="button-success pure-button" style="height:30px;width:200px">search</button>
+
+        </form>
             <!--<button class="button-error pure-button">Error Button</button>
             <button class="button-warning pure-button">Warning Button</button>
             <button class="button-secondary pure-button">Secondary Button</button>-->
