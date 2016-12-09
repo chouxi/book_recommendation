@@ -36,4 +36,5 @@ def most_popular(sel_user_id):
             if rated.isbn == pop_res.isbn:
                 already_rated.remove(rated)
                 most_pop_res.remove(pop_res)
+                break;
     return nlargest(REC_NUM, most_pop_res, key=lambda ele:ele.rating_sum)
